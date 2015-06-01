@@ -1,6 +1,17 @@
 defmodule Tree.Node do
   defstruct value: 0, left: nil, right: nil
 
+  def ltr_traversal(tree = %Tree.Node{}), do: ltr_traversal([tree], [])
+
+  defp ltr_traversal([], acc), do: acc
+  defp ltr_traversal([tree | rest], acc) do
+    ltr_traversal(rest ++ filter_branches(tree), acc ++ [tree.value])
+  end
+
+  defp filter_branches(%Tree.Node{left: left, right: right}) do
+    Enum.filter([left, right], fn(x) -> not is_nil(x) end)
+  end
+
   def left_first(nil) do
     []
   end
