@@ -38,6 +38,10 @@ defmodule Tree.NodeTest do
     {:ok, tree: tree}
   end
 
+  test "right-first traversal", %{tree: tree} do
+    assert Tree.Node.right_first(tree) == [25, 4, 11, 8, 14, 3, 35, 18, 15, 22, 30]
+  end
+
   test "right_from_left traversal", %{tree: tree} do
     assert Tree.Node.right_from_left(tree) == [25, 4, 11, 8, 14, 3, 35, 18, 15, 22, 30]
   end
